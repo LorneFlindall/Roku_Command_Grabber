@@ -1,6 +1,4 @@
 import telnetlib
-import xml.etree.ElementTree as ET
-
 
 def get_client_Logs(ip):
     '''open telnet session and retrieve the current loaded texture info, return string '''
@@ -36,22 +34,6 @@ def get_command_from_logs(ip):
     tn.close()
     return commands
 
-def check_for_xml(xmlString):
-    '''Check for valid sgnode xml'''
-    tree = ET.ElementTree(ET.fromstring(xmlString))
-    root = tree.getroot()
-    # Look at each child for the app name and then return the app id for it
-    for child in root:
-        #print child.tag
-        if child.tag == 'CloudYouiLib':
-            results = child.tag
-            print ('Found: ' + results)
-            return True
-
-
-
-
-#stuff = get_client_Logs("10.100.89.60")
 
 stuff = get_command_from_logs("10.100.88.90")
 
